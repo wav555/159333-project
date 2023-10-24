@@ -1,0 +1,103 @@
+
+action.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+changeff
+  rotate: false
+  xy: 1, 451
+  size: 540, 60
+  orig: 540, 60
+  offset: 0, 0
+  index: -1
+hurtblood
+  rotate: false
+  xy: 1, 389
+  size: 300, 60
+  orig: 300, 60
+  offset: 0, 0
+  index: -1
+boss
+  rotate: false
+  xy: 1, 207
+  size: 170, 180
+  orig: 170, 180
+  offset: 0, 0
+  index: 0
+boss
+  rotate: false
+  xy: 1, 25
+  size: 170, 180
+  orig: 170, 180
+  offset: 0, 0
+  index: 1
+boss
+  rotate: false
+  xy: 173, 207
+  size: 170, 180
+  orig: 170, 180
+  offset: 0, 0
+  index: 2
+boss
+  rotate: false
+  xy: 173, 25
+  size: 170, 180
+  orig: 170, 180
+  offset: 0, 0
+  index: 3
+boss
+  rotate: false
+  xy: 345, 269
+  size: 170, 180
+  orig: 170, 180
+  offset: 0, 0
+  index: 4
+boss
+  rotate: false
+  xy: 345, 87
+  size: 170, 180
+  orig: 170, 180
+  offset: 0, 0
+  index: 5
+cloud
+  rotate: false
+  xy: 543, 403
+  size: 215, 108
+  orig: 215, 108
+  offset: 0, 0
+  index: 0
+boss
+  rotate: false
+  xy: 517, 221
+  size: 170, 180
+  orig: 170, 180
+  offset: 0, 0
+  index: 6
+cloud
+  rotate: false
+  xy: 760, 403
+  size: 215, 108
+  orig: 215, 108
+  offset: 0, 0
+  index: 1
+boss
+  rotate: false
+  xy: 689, 221
+  size: 170, 180
+  orig: 170, 180
+  offset: 0, 0
+  index: 7
+cloud
+  rotate: false
+  xy: 517, 111
+  size: 215, 108
+  orig: 215, 108
+  offset: 0, 0
+  index: 2
+cloud
+  rotate: false
+  xy: 517, 1
+  size: 215, 108
+  orig: 215, 108
+  offset: 0, 0
+  index: 3

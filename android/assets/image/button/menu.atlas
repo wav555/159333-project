@@ -1,0 +1,26 @@
+menu.png
+size: 600, 271
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+over_quit_up
+  rotate: false
+  xy: 0, 0
+  size: 300, 100
+  orig: 300, 100
+  offset: 0, 0
+  index: -1
+over_try_up
+  rotate: false
+  xy: 300, 0
+  size: 300, 100
+  orig: 300, 100
+  offset: 0, 0
+  index: -1
+play_up
+  rotate: false
+  xy: 0, 100
+  size: 516, 171
+  orig: 516, 171
+  offset: 0, 0
+  index: -1
