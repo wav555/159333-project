@@ -15,43 +15,28 @@ import com.mygdx.game.utii.AnimationUtii;
 import com.mygdx.game.utii.R;
 
 public class NinjaActor extends AnimationsActor {
-    /*起跳的图片**/
-    private TextureRegion up;
-    /*下降的图片**/
-    private TextureRegion down;
-    /*发送飞镖的图片**/
-    private TextureRegion dart;
-    /*生命值**/
-    private TextureRegion lifeImage;
-    /*特殊飞镖图片**/
-    private TextureRegion dartsImage;
-    /*是否起跳**/
-    private boolean isUp;
-    /*是否发送飞镖**/
-    private boolean isDart;
-
+    private TextureRegion up;//up image
+    private TextureRegion down;//down image
+    private TextureRegion dart; //darts image
+    private TextureRegion lifeImage; //Health value
+    private TextureRegion dartsImage;//Special dart pictures
+    private boolean isUp;//Jump or not
+    private boolean isDart;//if send darts
     private float centex;
-    /*生命数量**/
-    private int life=5;
-    /*特殊飞镖数**/
-    private int darts = 0;
-    /*上升速度**/
-    private float UpSeed = 3;
-    /*下降速度**/
-    private float downSeed = -300;
-    /*计数器**/
-    private float date;
-    /*木桩**/
+    private int life=5;//num of life
+    private int darts = 0;//num of darts
+    private float UpSeed = 3;//up speed
+    private float downSeed = -300;//down speed
+    private float date;//Counter
     public ImageActor bridge;
-    /*游戏主类**/
     private GameMian main;
 
-    /**构造方法 赋值初始化成员变量*/
+   //Constructor assignment initializes member variables
     public NinjaActor(GameMian main){
         this.main = main;
-        /*行走动画**/
+        //Walking animation
         Animation walk = AnimationUtii.createAnimation(main.getAsset().get(R.Actor.IMAGE_NIN_DAR, Texture.class), 1, 10,Animation.PlayMode.LOOP , 0.15f);
-        /*旋转动画**/
+        //Rotate Animation
         Animation takeOff = AnimationUtii.createAnimation(main.getAsset().get(R.Actor.IMAGE_NIN_CHA, Texture.class), 1, 11,Animation.PlayMode.NORMAL , 0.25f,false,false,0,5);
         Animation Spin = AnimationUtii.createAnimation(main.getAsset().get(R.Actor.IMAGE_NIN_CHA, Texture.class), 1, 11,Animation.PlayMode.LOOP , 0.15f,false,false,5,10);
         Animation decline = AnimationUtii.createAnimation(main.getAsset().get(R.Actor.IMAGE_NIN_CHA, Texture.class), 1, 11,Animation.PlayMode.LOOP , 0.05f,false,false,10,11);
@@ -60,7 +45,7 @@ public class NinjaActor extends AnimationsActor {
         ans[1] = takeOff;
         ans[2] = Spin;
         ans[3] = decline;
-        /*初始化图片**/
+       //Initialize image
         TextureRegion[] tu = (TextureRegion[]) walk.getKeyFrames();
         up = tu[2];
         down = tu[1];
@@ -125,8 +110,8 @@ public class NinjaActor extends AnimationsActor {
                     setType(4);
                     UpSeed = 0;
                 }
-                UpSeed += downSeed*arg0;	//上升速度 = 上升速度+下降速度*时间
-                setY(getY()+UpSeed * arg0);		//设置Y轴坐标，y= y+上升速度*时间
+                UpSeed += downSeed*arg0;
+                setY(getY()+UpSeed * arg0);
                 break;
             case 4:
                 if(UpSeed >= 0) {
@@ -134,8 +119,8 @@ public class NinjaActor extends AnimationsActor {
                 }else {
                     setTexture(down);
                 }
-                UpSeed += downSeed*arg0;	//上升速度 = 上升速度+下降速度*时间
-                setY(getY()+UpSeed * arg0);		//设置Y轴坐标，y= y+上升速度*时间
+                UpSeed += downSeed*arg0;
+                setY(getY()+UpSeed * arg0);
                 break;
         }
 
@@ -193,31 +178,31 @@ public class NinjaActor extends AnimationsActor {
     }
 
     private void testMoveToAction() {
-        // 设置演员初始化位置
+        // Set actor initialization position
 
-        // 获取一个 MoveTo 动作, 3 秒内移动到 (150, 300) 的位置
+        // Obtain a MoveTo action and move to a position of (150, 300) within 3 seconds
         MoveToAction action = Actions.moveTo(getX(), main.getWordHeight()/2+75, 1.25F);
 
-        // 将动作附加在演员身上, 执行动作
+        // Attach the action to the actor and execute the action
 
         /*
-         * 动作执行原理（查看 Actor 和相应 Action 的源码）:
+         *Action execution principle (check the source code of Actor and corresponding Action):
          *
-         * 实际上动作添加到演员身上的后, 动作被存放到一个数组中, 然后在更新演员逻辑的 actor.act()方法中遍历存放动作的数组,
-         * 对每一个动作根据时间步 delta 改变演员相应的状态属性值。然后在绘制演员的 actor.draw() 方法中绘制演员时使用新的
-         * 状态属性值绘制, 和上一帧相比, 就显的演员被“动”起来了。
+         *After the action is actually added to the actor, it is stored in an array and then iterated through the array storing the action in the actor. act() method that updates the actor's logic,
+         *Change the actor's corresponding state attribute value based on the time step delta for each action. Then, when drawing actors in the actor. draw() method, use the new
+         *The state attribute values are drawn, and compared to the previous frame, it shows that the actor has been "moved".
          */
 
         RunnableAction runnable = Actions.run(new Runnable() {
             public void run() {
-                // 打印一句 log 表示动作已执行
+                //Print a log to indicate that the action has been executed
                 setType(2);
             }
         });
 
         SequenceAction sequence = Actions.sequence(action, runnable);
 
-        // 执行顺序动作
+        // Execute sequential actions
         this.addAction(sequence);
     }
 

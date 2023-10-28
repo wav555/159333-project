@@ -6,18 +6,19 @@ import com.mygdx.game.actor.beas.ImageActor;
 import com.mygdx.game.utii.R;
 
 public class BackgroundActor extends ImageActor {
-    /**是否移动*/
+    // Move or not
     private boolean isMove;
-    /**移动速度*/
+    //movement speed
     private float seed;
-    /**偏移量*/
+    //offset
     private float offx;
 
     public BackgroundActor(TextureRegion texture) {
         // TODO Auto-generated constructor stub
         super(texture);
     }
-    /**演员动作，用于移动图片*/
+
+   //Actor actions, used to move images
     @Override
     public void act(float arg0) {
         // TODO Auto-generated method stub
@@ -30,7 +31,7 @@ public class BackgroundActor extends ImageActor {
             }
         }
     }
-    /**画出2福图片，已实现连续动画*/
+    //Draw 2 lucky pictures and achieve continuous animation
     @Override
     public void draw(Batch batch, float parentAlpha) {
         // TODO Auto-generated method stub

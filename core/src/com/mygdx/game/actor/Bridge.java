@@ -7,7 +7,7 @@ import com.mygdx.game.actor.beas.ImageActor;
 import com.mygdx.game.main.GameMian;
 import com.mygdx.game.utii.R;
 
-/**柱子类，负责人物站立所使用的柱子*/
+// responsible for the pillars used by characters to stand on
 public class Bridge extends ImageActor {
 
     private TextureRegion bridgeBody;
@@ -35,7 +35,7 @@ public class Bridge extends ImageActor {
         Color superColor = batch.getColor();
         Color thisColor = this.getColor();
         batch.setColor(thisColor.a, thisColor.b, thisColor.g, thisColor.r);
-        /**画左柱子*/
+        //Draw Left Pillar
         batch.draw(
                 bridfeLeft,
                 getX()+bridfeBodyLeft.getRegionWidth(), getY(),
@@ -44,7 +44,8 @@ public class Bridge extends ImageActor {
                 getScaleX(), getScaleY(),
                 getRotation()
         );
-        /**画右左柱子*/
+
+        //Draw Right Pillar
         batch.draw(
                 bridfeRegin,
                 getX()-bridfeBodyRegin.getRegionWidth()*3+getWidth(), getY(),

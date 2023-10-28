@@ -11,13 +11,13 @@ import com.mygdx.game.utii.AnimationUtii;
 import com.mygdx.game.utii.R;
 
 public class WarriorActor extends AnimationsActor {
-    /**游戏主类*/
+    //Game main category
     private GameMian main;
-    /**站立用的木桩*/
+    //Standing wooden stakes
     private Bridge bridge;
-    /**移动速度*/
+   //speed
     private float seed;
-    /**有参构造方法，负责重置一些基础变量*/
+   //Parametric construction method responsible for resetting some basic variables
     private TextureRegion[] death;
 
     private float deathX,deathY;
@@ -39,9 +39,9 @@ public class WarriorActor extends AnimationsActor {
 
 
 
-
+   //Set the game main class and animate it
     public  Bridge bidge;
-    /**设置游戏主类，并设置动画*/
+
     public void setMain(GameMian main) {
         if(this.main != null) {
             return;
@@ -76,7 +76,7 @@ public class WarriorActor extends AnimationsActor {
         setAnimations(animations);
     }
 
-    /**设置木桩，并设置武士的x与Y轴坐标*/
+    //Set the wooden stakes and set the x and Y axis coordinates of the samurai
     public void setBridge(Bridge bridge) {
         setY(bridge.getTopY());
         setX(MathUtils.random(bridge.getX(), bridge.getReightX()));
@@ -86,7 +86,7 @@ public class WarriorActor extends AnimationsActor {
     public void setSeed(float seed) {
         this.seed = seed;
     }
-    /**武士的动作*/
+    ///The actions of a samurai
     @Override
     public void act(float arg0) {
         // TODO Auto-generated method stub
@@ -96,29 +96,29 @@ public class WarriorActor extends AnimationsActor {
             return;
         }
         switch(getType()) {
-            case 0://0向做移动，到移动到顶点 向右移动
+            case 0://Move in the 0 direction and move to the right at the vertex
                 setX(getX()+(bridge.getSeed()+this.seed)*arg0*R.BEI_SU);
                 if(this.getX() <= bridge.getX()) {
                     setType(1);
                 }
                 break;
-            case 1://1 和0相反
+            case 1://1 and 0 are opposite
                 setX(getX()+(bridge.getSeed()-this.seed)*arg0*R.BEI_SU);
                 if(this.getReightX()>=bridge.getReightX()) {
                     setType(0);
                 }
                 break;
-            case 2://2死亡，Y轴向下移动
+            case 2://2 deaths, Y-axis downward movement
                 setY(getY()-Math.abs((bridge.getSeed()+this.seed*2)*arg0)*R.BEI_SU);
                 break;
         }
     }
 
-    //画出演员
+    //Draw actors
 //    public void drawActor(Batch batch) {
 //        if(getType()!=2) {
 //            super.drawActor(batch);
-//        }else {//画出死亡效果
+//        }else {
 //            batch.draw(getTexture(), deathX, deathY, getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
 //            batch.draw(death[2], getX()+death[2].getRegionWidth(), getTopY(), getOriginX(), getOriginY(), death[2].getRegionWidth(), death[2].getRegionHeight(), getScaleX(), getScaleY(), getRotation());
 //            batch.draw(death[0], getX(), getTopY()-death[0].getRegionHeight(), getOriginX(), getOriginY(), death[0].getRegionWidth(), death[0].getRegionHeight(), getScaleX(), getScaleY(), getRotation());
@@ -129,7 +129,7 @@ public class WarriorActor extends AnimationsActor {
 //
 //    }
 
-    /**放入对象池的重置方法，重置速度、木桩、是否碰撞*/
+    //The reset method for placing objects in the pool, including resetting speed, wooden stakes, and collision or not
     @Override
     public void reset() {
         // TODO Auto-generated method stub
@@ -140,7 +140,7 @@ public class WarriorActor extends AnimationsActor {
         setCollision(false);
 
     }
-    //死亡时调用的方法
+    //Method called on death
     public void death() {
         deathX = getX();
         deathY = getY();

@@ -6,10 +6,9 @@ import com.mygdx.game.main.GameMian;
 
 public class IStage extends Stage {
 
-    /**是否显示*/
     private boolean isView;
-    /**游戏入口类*/
-    private GameMian main;
+
+    private GameMian main;//Game Entry
 
     public IStage(GameMian main, Viewport view) {
         super(view);

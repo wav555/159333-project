@@ -10,32 +10,38 @@ import com.mygdx.game.utii.R;
 
 public class DaoActor extends ImageActor {
 
-    /**刀阵的长度*/
+   // The length of the knife array
     private int sum;
-    /**木桩，用来放在木桩上面*/
+
+    //Wooden stakes, used to place on top of wooden stakes
     private Bridge bridge;
-    /**移动速度，应该没有自身的移动速度，已木桩的为准*/
+
+   //The movement speed should not have its own movement speed,
+   //the one with wooden stakes should prevail
     private float seed;
-    /**给图片的类*/
+
+    //Class for images
     private GameMian main;
-    /**展示图片*/
+
+    //Display images
     private Texture tu;
 
-
+    //Set up wooden stakes
+    //initialize the size and position of the knife array
     public Bridge getBridge() {
         return bridge;
     }
-    /**设置木桩，并初始化刀阵的大小和位置*/
+
     public void setBridge(Bridge bridge) {
-        //随机刀阵宽度
+        //Random knife array width
         sum = MathUtils.random(1, 8);
-        //设置刀阵位置
+        //Set the position of the knife array
         setX(MathUtils.random(bridge.getX(), bridge.getReightX()-sum*tu.getWidth()));
 
         setY(bridge.getTopY()-10);
-        //设置移动速度
+        //Set Movement Speed
         this.seed = bridge.getSeed();
-        //设置大小
+        //set size
         setSize(sum*tu.getWidth(), tu.getHeight());
 
     }
@@ -59,7 +65,7 @@ public class DaoActor extends ImageActor {
         super.act(arg0);
         setX(getX()+seed *arg0*R.BEI_SU);
     }
-    /**绘制刀阵，根据sum的值绘制出*/
+    //Draw a knife array based on the sum value
     @Override
     public void drawActor(Batch batch) {
         // TODO Auto-generated method stub

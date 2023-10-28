@@ -15,16 +15,16 @@ import com.mygdx.game.screen.GameScreen;
 import com.mygdx.game.utii.R;
 
 public class GameMian extends Game {
-    /**资源缓存类*/
+    //Resource Cache Class
     private AssetManager asset;
-    /**解析组合图类*/
+    //Analytic Composite Graph Class
     private TextureAtlas atlas,mapatlas;
-    /**游戏窗口大小*/
+    //Game Window Size
     private float wordWidth;
     private float wordHeight;
-    /**场景*/
+    //Scenarios
     private GameScreen gameScreen;
-    /**黑边*/
+    //Black edge
     private float heibian ;
     private FPSDebug fpsDebug;
 
@@ -35,10 +35,10 @@ public class GameMian extends Game {
 
 
 
-    public void create() {//初始化游戏
+    public void create() {//Initialize Game
         // TODO Auto-generated method stub
-        asset = new AssetManager();//创建资源缓存类
-        /**加载要缓存数据*/
+        asset = new AssetManager();//Create Resource Cache Class
+       //Load data to cache
         asset.load("image/button/menu.png", Texture.class);
         asset.load("image/button/menu.atlas",TextureAtlas.class);
         asset.load(R.emun.IMAGE_BRAGKGROUND,Texture.class);
@@ -65,40 +65,36 @@ public class GameMian extends Game {
 
         asset.load(R.Font.FONT, BitmapFont.class);
 
-        asset.finishLoading();//进行缓存
+        asset.finishLoading();//Caching
         font= asset.get(R.Font.FONT, BitmapFont.class);
-        /**返回组合图形类*/
+        //Return to Composite Graph Class
         atlas = asset.get(R.ATLAS_BUTTON, TextureAtlas.class);
         mapatlas = asset.get(R.BackGround.ATLAS_XIAOTU,TextureAtlas.class);
-        /**返回背景图片*/
+        //Return to background image
         Texture t = asset.get(R.emun.IMAGE_BRAGKGROUND,Texture.class);
-        /**获取背景图片宽度，并计算高度*/
+        //Obtain the width of the background image and calculate the height
         wordWidth = t.getWidth();
 //		wordWidth = 480;
         wordHeight =
                 wordWidth* Gdx.graphics.getHeight()/Gdx.graphics.getWidth();
         wordHeight = t.getHeight();
-        /**计算黑白宽度*/
-        heibian = (wordHeight - t.getHeight()) /2.0f;
-        /**创建场景*/
-        gameScreen = new GameScreen(this);
-        /**设置场景*/
-        setScreen(gameScreen);
-        //设置背景音乐
-        // 加载背景音乐, 创建 Music 实例
+        heibian = (wordHeight - t.getHeight()) /2.0f;//Calculate black and white width
+        gameScreen = new GameScreen(this); //Creating Scenes
+        setScreen(gameScreen);//Set up the scene
+
+        //Set background music
+        // Load background music and create a Music instance
         music = Gdx.audio.newMusic(Gdx.files.internal("mymusic.wav"));
 
-        // 背景音乐设置循环播放
+        // Background music setting loop playback
         music.setLooping(true);
 
-        // 设置音量, 值范围 0.0 ~ 1.0
+        // Set volume, value range 0.0~1.0
         music.setVolume(1.2F);
         // int jumpSound1Id = sound.load(context, R.raw.jump_sound_1, 1);
-
         music.play();
 
-        // 加载音效, 创建 Sound 实例
-
+        // Load sound effects and create a Sound instance
         jump = Gdx.audio.newSound(Gdx.files.internal("jump.mp3"));
 
         fpsDebug = new FPSDebug();
@@ -119,7 +115,7 @@ public class GameMian extends Game {
         if(asset !=null) {
             asset.dispose();
         }
-        //设置bgm
+        //bgm
         if (music != null) {
             music.dispose();
         }
@@ -133,17 +129,17 @@ public class GameMian extends Game {
     public void render() {
         // TODO Auto-generated method stub
 
-        // 黑色清屏
+        // Black Clear Screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if (Gdx.input.justTouched()) {
-            // 点击屏幕一次, 播放音效一次
+            // Click on the screen once to play the sound effect once
             jump.play();
         }
-        // 父类渲染场景
+        // Parent class rendering scene
         super.render();
 //		gameScreen.render(0);
-//		 判断是否需要渲染帧率
+//		Determine if rendering frame rate is required
         fpsDebug.render();
 
     }
@@ -153,9 +149,9 @@ public class GameMian extends Game {
         private SpriteBatch batch;
 
         private BitmapFont  fpsBitmapFont;
-        /** 文本高度占屏幕高度的比例 */
+        //The proportion of text height to screen height
         private static final float OCCUPY_HEIGHT_RATIO = 14.0f/480.0f;
-        /** 显示的文本偏移右下角的X轴和Y轴比例(相对于字体高度的比例) */
+        //The displayed text is offset by the X-axis and Y-axis proportions in the lower right corner (relative to the font height)
         private static final float DISPLAY_ORIGIN_OFFSET_RATIO = 0.5f;
 
         private float x,y;
@@ -163,7 +159,7 @@ public class GameMian extends Game {
         public void init(BitmapFont fpsBitmapFont,int fontRawPixSize) {
             this.batch = new SpriteBatch();
             this.fpsBitmapFont = fpsBitmapFont;
-            // 计算帧率文本显示位置（为了兼容所有不同尺寸的屏幕）
+            // Calculate frame rate text display position (for compatibility with all screens of different sizes)
             float height = Gdx.graphics.getHeight();
             float scale = (height * OCCUPY_HEIGHT_RATIO)/(float)fontRawPixSize;
             this.fpsBitmapFont.getData().setScale(scale);
@@ -174,7 +170,7 @@ public class GameMian extends Game {
         }
 
         public void render(){
-            // 绘制帧率
+            // Draw frame rate
             batch.begin();
             fpsBitmapFont.draw(batch, "FPS:"+Gdx.graphics.getFramesPerSecond(), x, y);
             batch.end();
@@ -187,7 +183,7 @@ public class GameMian extends Game {
                 batch.dispose();
                 batch = null;
             }
-            //设置bgm
+            //bgm
             if (music != null) {
                 music.dispose();
             }
@@ -195,7 +191,7 @@ public class GameMian extends Game {
             if (jump != null) {
                 jump.dispose();
             }
-            // fpsBitmapFont 由资源管理器负责管理, 这里不需要销毁
+            // FpsBitmapFont is managed by the resource manager and does not need to be destroyed here
         }
 
     }
