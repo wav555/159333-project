@@ -95,7 +95,7 @@ public class GameMian extends Game {
         music.setVolume(1.2F);
         // int jumpSound1Id = sound.load(context, R.raw.jump_sound_1, 1);
 
-music.play();
+        music.play();
 
         // 加载音效, 创建 Sound 实例
 

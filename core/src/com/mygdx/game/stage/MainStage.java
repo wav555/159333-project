@@ -465,6 +465,9 @@ public class MainStage extends IStage {
                 xt.setCollision(true);		//设置已配置
                     if (xt instanceof DaoActor) {    //判断是否碰撞刀
                         ni.setLife(ni.getLife() - 1);    //将生命减一
+// TODO
+
+
                     } else if (xt instanceof ArticleActor) {    //判断碰撞的道具
                         if (((ArticleActor) xt).getType() == ArticleActor.Type.darts) {//碰撞的是否为飞镖
                             ni.setDarts(ni.getDarts() + 1);    //增加飞镖
