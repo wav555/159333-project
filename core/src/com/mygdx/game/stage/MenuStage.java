@@ -13,32 +13,31 @@ import com.mygdx.game.stage.IStage.IStage;
 import com.mygdx.game.utii.R;
 
 public class MenuStage extends IStage {
-    /**开始按钮*/
+    /**start playing*/
     private ImageButton play;
-    /**成就按钮*/
-    //private ImageButton hid;
-    /**推出游戏*/
+    /**exit the game*/
     private ImageButton exit;
-    //其他按钮
-    //private ImageButton move;
-    //帮助按钮
+    //help
+    private ImageButton helper;
+
+    private ImageButton record;
     private ImageActor breakGround;
 
-    /**菜单场景的构造方法*/
+    /**Constructor*/
     public MenuStage(GameMian main, Viewport view) {
         super(main, view);
         // TODO Auto-generated constructor stub
         init();
     }
-    //初始化方法
+    //Initialization method
     public void init() {
 
-        /**创建背景**/
+        /**background**/
         TextureRegion r = new TextureRegion(getMain().getAsset().get(R.emun.IMAGE_BRAGKGROUND, Texture.class));
         breakGround = new ImageActor(r);
         breakGround.setCenter(getWidth()/2, getHeight()/2);
         this.addActor(breakGround);
-        /**创建开始按钮*/
+        /**start playing button*/
         play = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)),
                 new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)));
         play.setX(getWidth()*60/130);
@@ -54,7 +53,7 @@ public class MenuStage extends IStage {
         });
         this.addActor(play);
 
-        /**创建成就按钮*/
+        /**exit button*/
 		exit = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_EXIT)),
                 new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_EXIT)));
         exit.setX(getWidth()*60/130);
@@ -67,18 +66,35 @@ public class MenuStage extends IStage {
         });
         this.addActor(exit);
 
-        /**创建关于我按钮*/
-//        TextureRegion up = new TextureRegion(getMain().getAsset().get(R.emun.IMAGE_MORE_UP,Texture.class));
-//        TextureRegion down = new TextureRegion(getMain().getAsset().get(R.emun.IMAGE_MORE_DOWN,Texture.class));
-//        move = new ImageButton(new TextureRegionDrawable(up),
-//                new TextureRegionDrawable(new TextureRegion(down)));
-////		move.setScale(1021f);
-//        float widht = getWidth()*0.3f;
-//        System.out.println(widht);
-//        move.setSize(150, 150);
-//        move.setX(0);
-//        move.setY((getHeight())-(move.getHeight()+getMain().getHeibian()/3));
-//        this.addActor(move);
+        helper = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)),
+                new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)));
+        helper.setX(getWidth()*10/180);
+        helper.setY((getHeight()-getMain().getHeibian()/2)*20/30);
+        helper.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // TODO Auto-generated method stub
+                super.clicked(event, x, y);
+                getMain().getGameScreen().showHelper();
+
+            }
+        });
+        this.addActor(helper);
+
+        record = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)),
+                new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)));
+        record.setX(getWidth()*10/180);
+        record.setY((getHeight()-getMain().getHeibian()/2)*20/30);
+        record.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // TODO Auto-generated method stub
+                super.clicked(event, x, y);
+                getMain().getGameScreen().showRecord1();
+
+            }
+        });
+        this.addActor(record);
     }
 
 }

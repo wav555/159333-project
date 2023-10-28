@@ -472,6 +472,7 @@ public class MainStage extends IStage {
             if(!xt.isCollision()&&CollisionUtils.isCollis(xt, ni, 5)) {	//judge if they collide
                 xt.setCollision(true);		//The settings are configured
                     if (xt instanceof DaoActor) {    //Determine whether to collide with the knife
+<<<<<<< HEAD
                         ni.setLife(ni.getLife() - 1);//life--
                         yourAssetManager.load("knife.mp3", Sound.class);
                         yourAssetManager.finishLoading();
@@ -479,6 +480,15 @@ public class MainStage extends IStage {
                             Sound sound = yourAssetManager.get("knife.mp3", Sound.class);
                             long soundID=sound.play();
                             sound.setVolume(soundID,-1.5F);
+=======
+                        ni.setLife(ni.getLife() - 1);    //life--
+                    } else if (xt instanceof ArticleActor) {    //Determine the items that collide
+                        if (((ArticleActor) xt).getType() == ArticleActor.Type.darts) {//Whether the collision was a dart
+                            ni.setDarts(ni.getDarts() + 1);    //dart++
+                        } else if (((ArticleActor) xt).getType() == ArticleActor.Type.heart) {//judge if he gets a heart
+                            ni.setLife(ni.getLife() + 1);        //life++
+
+>>>>>>> 3e3a751308dcb95ca92eaa0b4557572b5387c72f
                         }
                     }
                     else if (xt instanceof ArticleActor) {    //Determine the items that collide
@@ -568,5 +578,7 @@ public class MainStage extends IStage {
 
         }
     }
+
+
 
 }
