@@ -61,7 +61,6 @@ public class NinjaActor extends AnimationsActor {
 
     }
 
-
     @Override
     public void draw(Batch batch, float parentAlpha) {
         // TODO Auto-generated method stub
@@ -166,7 +165,6 @@ public class NinjaActor extends AnimationsActor {
         this.UpSeed = seed;
 
     }
-
 
 
     public boolean setBridge(ImageActor bridge) {

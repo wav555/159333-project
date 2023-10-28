@@ -3,7 +3,7 @@ package com.mygdx.game.actor.beas;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-/**处理动画角色的父类**/
+/**Parent class that works with animated characters**/
 public class AnimationsActor extends ImageActor {
 
     private boolean isLife = true;

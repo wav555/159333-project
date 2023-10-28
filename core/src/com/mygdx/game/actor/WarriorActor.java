@@ -37,8 +37,6 @@ public class WarriorActor extends AnimationsActor {
     }
 
 
-
-
    //Set the game main class and animate it
     public  Bridge bidge;
 
@@ -113,21 +111,6 @@ public class WarriorActor extends AnimationsActor {
                 break;
         }
     }
-
-    //Draw actors
-//    public void drawActor(Batch batch) {
-//        if(getType()!=2) {
-//            super.drawActor(batch);
-//        }else {
-//            batch.draw(getTexture(), deathX, deathY, getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
-//            batch.draw(death[2], getX()+death[2].getRegionWidth(), getTopY(), getOriginX(), getOriginY(), death[2].getRegionWidth(), death[2].getRegionHeight(), getScaleX(), getScaleY(), getRotation());
-//            batch.draw(death[0], getX(), getTopY()-death[0].getRegionHeight(), getOriginX(), getOriginY(), death[0].getRegionWidth(), death[0].getRegionHeight(), getScaleX(), getScaleY(), getRotation());
-//            batch.draw(death[3], getX(), getTopY()-death[3].getRegionHeight()*2, getOriginX(), getOriginY(), death[3].getRegionWidth(), death[3].getRegionHeight(), getScaleX(), getScaleY(), getRotation());
-//            batch.draw(death[1], getX()+death[1].getRegionHeight()*3, getTopY()-death[1].getRegionHeight(), getOriginX(), getOriginY(), death[1].getRegionWidth(), death[1].getRegionHeight(), getScaleX(), getScaleY(), getRotation());
-//            batch.draw(death[4], getX()+death[1].getRegionHeight()*3, getTopY()-death[3].getRegionHeight()*2, getOriginX(), getOriginY(), death[3].getRegionWidth(), death[3].getRegionHeight(), getScaleX(), getScaleY(), getRotation());
-//        }
-//
-//    }
 
     //The reset method for placing objects in the pool, including resetting speed, wooden stakes, and collision or not
     @Override

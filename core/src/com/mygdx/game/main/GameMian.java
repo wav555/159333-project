@@ -34,7 +34,6 @@ public class GameMian extends Game {
     private Sound jump;
 
 
-
     public void create() {//Initialize Game
         // TODO Auto-generated method stub
         asset = new AssetManager();//Create Resource Cache Class
@@ -42,7 +41,7 @@ public class GameMian extends Game {
         asset.load("image/button/menu.png", Texture.class);
         asset.load("image/button/menu.atlas",TextureAtlas.class);
         asset.load(R.emun.IMAGE_BRAGKGROUND,Texture.class);
-      //  asset.load(R.emun.IMAGE_MORE_DOWN,Texture.class);
+       // asset.load(R.emun.IMAGE_MORE_DOWN,Texture.class);
        // asset.load(R.emun.IMAGE_MORE_UP,Texture.class);
         asset.load(R.BackGround.IMAGE_BRAGKGROUND, Texture.class);
         asset.load(R.BackGround.IMAGE_BRAGKGROUND1, Texture.class);
@@ -119,7 +118,6 @@ public class GameMian extends Game {
         if (music != null) {
             music.dispose();
         }
-
         if (jump != null) {
             jump.dispose();
         }
@@ -176,7 +174,6 @@ public class GameMian extends Game {
             batch.end();
         }
 
-
         public void dispose() {
             // TODO Auto-generated method stub
             if(batch != null) {
@@ -187,7 +184,6 @@ public class GameMian extends Game {
             if (music != null) {
                 music.dispose();
             }
-
             if (jump != null) {
                 jump.dispose();
             }
@@ -196,94 +192,68 @@ public class GameMian extends Game {
 
     }
 
-
-
     public AssetManager getAsset() {
         return asset;
     }
-
-
 
     public void setAsset(AssetManager asset) {
         this.asset = asset;
     }
 
-
-
     public TextureAtlas getAtlas() {
         return atlas;
     }
-
-
 
     public void setAtlas(TextureAtlas atlas) {
         this.atlas = atlas;
     }
 
-
-
     public float getWordWidth() {
         return wordWidth;
     }
-
-
 
     public void setWordWidth(float wordWidth) {
         this.wordWidth = wordWidth;
     }
 
-
-
     public float getWordHeight() {
         return wordHeight;
     }
-
-
 
     public void setWordHeight(float wordHeight) {
         this.wordHeight = wordHeight;
     }
 
-
     public GameScreen getGameScreen() {
         return gameScreen;
     }
-
 
     public void setGameScreen(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
     }
 
-
     public float getHeibian() {
         return heibian;
     }
-
 
     public void setHeibian(float heibian) {
         this.heibian = heibian;
     }
 
-
     public TextureAtlas getMapatlas() {
         return mapatlas;
     }
-
 
     public void setMapatlas(TextureAtlas mapatlas) {
         this.mapatlas = mapatlas;
     }
 
-
     public BitmapFont getFont() {
         return font;
     }
 
-
     public void setFont(BitmapFont font) {
         this.font = font;
     }
-
-
 
 }

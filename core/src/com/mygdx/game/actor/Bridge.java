@@ -27,8 +27,6 @@ public class Bridge extends ImageActor {
 
     }
 
-
-
     @Override
     public void draw(Batch batch, float parentAlpha) {
         // TODO Auto-generated method stub

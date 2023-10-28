@@ -3,7 +3,6 @@ package com.mygdx.game.stage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -12,8 +11,6 @@ import com.mygdx.game.actor.beas.ImageActor;
 import com.mygdx.game.main.GameMian;
 import com.mygdx.game.stage.IStage.IStage;
 import com.mygdx.game.utii.R;
-
-import sun.tools.jstat.Scale;
 
 public class MenuStage extends IStage {
     /**开始按钮*/

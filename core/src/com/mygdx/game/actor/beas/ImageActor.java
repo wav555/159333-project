@@ -7,13 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Pool.Poolable;
 public class ImageActor extends Actor implements Poolable{
 
-    /**展示图片*/
+    /**Display pictures*/
     private TextureRegion texture;
-    /**是否可碰撞*/
+    /**Whether to collide or not*/
     private boolean isCollision;
-    /**构造方法
-     * 用于赋值图片
-     * 和设置大小
+    /**Constructor
+     *Used to assign images and set sizes
      * */
     public ImageActor(TextureRegion texture) {
         // TODO Auto-generated constructor stub
@@ -23,11 +22,11 @@ public class ImageActor extends Actor implements Poolable{
         }
         setSize(texture.getRegionWidth(),texture.getRegionHeight());
     }
-    /**无参构造方法，用于对象池创建*/
+    /**Parameterless construction method for object pool creation*/
     public ImageActor() {
 
     }
-    /**绘制对象*/
+    /**Draw the object*/
     @Override
     public void draw(Batch batch, float parentAlpha) {
         // TODO Auto-generated method stub
@@ -46,7 +45,7 @@ public class ImageActor extends Actor implements Poolable{
     public TextureRegion getTexture() {
         return texture;
     }
-    //画出演员
+    //Draw the actors
     public void drawActor(Batch batch) {
         batch.draw(texture, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
     }

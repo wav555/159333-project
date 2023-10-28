@@ -36,44 +36,44 @@ import java.util.List;
 import java.util.Iterator;
 
 public class MainStage extends IStage {
-    /**背景图片*/
+    /**Background image*/
     private ImageActor background1;
-    /**背景对象*/
+    /**Background object*/
     private BackgroundActor background2,background3;
 
-    /**木桩*/
+    /**Bridges*/
     private Bridge bridge;
-    /**木桩的对象池*/
+    /**Stake object pool*/
     private Pool<Bridge> pool;
-    /**木桩的集合类*/
+    /**A collection class for a stake*/
     private ArrayList<ImageActor> poolList = new ArrayList<ImageActor>();
-    /**最高Y轴坐标*/
+    /**Highest Y-axis coordinates*/
     private float bridgeTopYMax;
-    /**最低Y轴坐标*/
+    /**Minimum Y-axis coordinates*/
     private float bridgeTopYMin;
-    /**武士对象池*/
+    /**Warrior object pool*/
     private Pool<WarriorActor> warrPool ;
-    /**武士集合*/
+    /**Warrior set*/
     private ArrayList<AnimationsActor> anList = new ArrayList<AnimationsActor>();
-    /**乌鸦集合*/
+    /**Crow set*/
     private Pool<CrowActor> crowPool ;
-    /**刀和物品集合*/
+    /**Collection of knives and items*/
     private ArrayList<ImageActor> pt = new ArrayList<ImageActor>();
-    /**初次创建乌鸦时间*/
+    /**Time to create a raven for the first time*/
     private float createCrowTime = 2f;
     private float createTime;
-    /**初次创建物品时间*/
+    /**When the item was first created*/
     private float createArcTime = 2f;
     private float createArTime;
 
-    /**刀对象池*/
+    /**Knife object pool*/
     private Pool<DaoActor> daoPool;
-    /**物品对象池*/
+    /**Item object pools*/
     private Pool<ArticleActor> arPool;
-    /**忍者对象*/
+    /**Ninja object*/
     private NinjaActor ni;
 
-    /**子弹对象池*/
+    /**Bullet object pool*/
     private Pool<DartsActor> darPool;
 
     private List<DartsActor> darList = new ArrayList<DartsActor>();
@@ -117,7 +117,7 @@ public class MainStage extends IStage {
         creatNin();
     }
 
-    /**主场景构造方法*/
+    /**The main scene constructor*/
     public MainStage(GameMian main, Viewport view) {
         super(main, view);
         // TODO Auto-generated constructor stub
@@ -127,51 +127,43 @@ public class MainStage extends IStage {
 
     }
 
-    /**初始化方法*/
+    /**Initialize the method*/
     public void init() {
         this.getRoot().clear();
 
-        /**创建木桩对象池*/
+        /**Create a pool of bridge objects*/
         pool = Pools.get(Bridge.class,5);
-        /**创建武士对象池*/
+        /**Create a pool of warrior objects*/
         warrPool = Pools.get(WarriorActor.class,5);
-        /**创建乌鸦对象池*/
+        /**Create a pool of crow objects*/
         crowPool = Pools.get(CrowActor.class, 10);
-        /**创建刀对象池*/
+        /**Create a pool of knife objects*/
         daoPool = Pools.get(DaoActor.class, 5);
-        /**创建物品对象池*/
+        /**Create a pool of article objects*/
         arPool = Pools.get(ArticleActor.class, 10);
 
         darPool = Pools.get(DartsActor.class,20);
 
-
-
-        //创建背景1
         background1 = new ImageActor(new TextureRegion(getMain().getAsset().get(R.BackGround.IMAGE_BRAGKGROUND, Texture.class)));
 
-        //创建背景2
         background2 = new BackgroundActor(new TextureRegion(getMain().getAsset().get(R.BackGround.IMAGE_BRAGKGROUND1, Texture.class)));
         background2.setMove(true);
         background2.setSeed(-50);
         background2.setScale(2f);
 
-        //创建背景3
         background3 = new BackgroundActor(new TextureRegion(getMain().getAsset().get(R.BackGround.IMAGE_BRAGKGROUND2, Texture.class)));
         background3.setMove(true);
         background3.setSeed(-100);
         background3.setScale(1.2f);
 
-        //创建木桩
+        //Bridge
         bridge =new Bridge(getMain(), 2);
         bridge.setSeed(R.Physical.SEED_X);	//设置移动速度
 
-        //计算最大和最小TopY轴坐标
+        //Calculate the maximum and minimum TopY coordinates
         bridgeTopYMin = Math.max(100, getHeight()- bridge.getHeight()-R.Physical.NIN_UP_SEED/2) ;
         bridgeTopYMax = Math.min(bridgeTopYMin+bridge.getHeight()*0.8f, getHeight()-R.Physical.NIN_UP_SEED-100f);
         bridgeTopYMax= Math.min(bridgeTopYMax, bridge.getHeight());
-
-
-
 
         TextureRegion[] ans = AnimationUtii.tuerx(this.getMain().getAsset().get(R.Actor.IMAGE_NIN_BUTT, Texture.class), 1, 2);
         an = new ImageButton(new TextureRegionDrawable(ans[0]), new TextureRegionDrawable(ans[1]));
@@ -237,9 +229,9 @@ public class MainStage extends IStage {
 
     }
 
-    /**创建木桩方法*/
+    /**Create Bridge methods*/
     public Bridge createBridge() {
-        /**随机出木桩的TopY*/
+        /**TopY of bridge*/
         float topY = MathUtils.random(bridgeTopYMin-80, bridgeTopYMax+100);
         Bridge br =  pool.obtain();	//创建木桩
         br.setMian(getMain());
@@ -256,7 +248,7 @@ public class MainStage extends IStage {
         br.setZIndex(this.nuActor.getZIndex());
         return br;
     }
-    /**创建武士方法*/
+    /**warrior*/
     public void createWarriorActor() {
         WarriorActor warr= warrPool.obtain();
         warr.setMain(getMain());
@@ -269,7 +261,7 @@ public class MainStage extends IStage {
         anList.add(warr);
         warr.setZIndex(this.nuActor.getZIndex());
     }
-    /**场景动作*/
+    /**Scene action*/
     @Override
     public void act(float arg0) {
         // TODO Auto-generated method stub
@@ -315,9 +307,9 @@ public class MainStage extends IStage {
 
         death();
     }
-    /**移除方法*/
+    /**Method of removing*/
     public void delete() {
-        //移除木桩
+        //remove bridge
         Iterator<ImageActor> it = poolList.iterator();
         while(it.hasNext()) {
             ImageActor actor = it.next();
@@ -328,7 +320,7 @@ public class MainStage extends IStage {
                 this.getRoot().removeActor(actor);
             }
         }
-        /**移除武士和乌鸦的方法*/
+        /**remove warrior and crow*/
         Iterator<AnimationsActor> it1 = anList.iterator();
         while(it1.hasNext()) {
             AnimationsActor an= it1.next();
@@ -342,7 +334,7 @@ public class MainStage extends IStage {
                 this.getRoot().removeActor(an);
             }
         }
-        /**移除物品方法*/
+        /**remove items*/
         Iterator<ImageActor> pt = this.pt.iterator();
         while(pt.hasNext()) {
             ImageActor xt = pt.next();
@@ -359,7 +351,7 @@ public class MainStage extends IStage {
 
         delteArt();
     }
-    /**移除子弹*/
+    /**remove dart*/
     public void delteArt() {
         Iterator<DartsActor> pt = darList.iterator();
         while(pt.hasNext()) {
@@ -372,7 +364,7 @@ public class MainStage extends IStage {
         }
     }
 
-    /**创建乌鸦*/
+    /**crow*/
     public void createCrow() {
         float topY = MathUtils.random(300, 500);
         CrowActor crow = crowPool.obtain();
@@ -385,7 +377,7 @@ public class MainStage extends IStage {
         this.addActor(crow);
         crow.setZIndex(this.nuActor.getZIndex());
     }
-    /**创建陷阱*/
+    /**knife*/
     public void creatDao(Bridge bridge) {
         DaoActor dao= daoPool.obtain();
         dao.setMain(getMain());
@@ -395,7 +387,7 @@ public class MainStage extends IStage {
         dao.setZIndex(this.nuActor.getZIndex());
 
     }
-    /**创建物品*/
+    /**create items*/
     public void creatAr() {
         float topY = MathUtils.random(200, 400);
         ArticleActor ar = arPool.obtain();
@@ -407,7 +399,7 @@ public class MainStage extends IStage {
         this.pt.add(ar);
         ar.setZIndex(this.nuActor.getZIndex());
     }
-    /**创建忍者**/
+    /**create ninja**/
     public void creatNin() {
         ni = new NinjaActor(getMain());
         ni.setContX(200);
@@ -416,7 +408,7 @@ public class MainStage extends IStage {
         this.addActor(ni);
         ni.setZIndex(this.nuActor.getZIndex());
     }
-    /**创建子弹（飞镖）*/
+    /**create dart*/
     public void creatDart() {
         DartsActor dar = darPool.obtain();
         dar.setY(ni.getY()+ni.getHeight()/2);
@@ -428,16 +420,16 @@ public class MainStage extends IStage {
         this.darList.add(dar);
     }
 
-    /**碰撞木桩的方法*/
+    /**The method of colliding with bridges*/
     public void isColl() {
-        if(ni.getType() !=0) {	//判断忍者状态是否为已在木桩上
-            for(int i=0;i<poolList.size();i++) {	//循环遍历木桩
+        if(ni.getType() !=0) {	//Determine if the ninja status is already on the bridge
+            for(int i=0;i<poolList.size();i++) {	//Loop through the bridges
                 ImageActor ac = poolList.get(i);
-                if(CollisionUtils.isCollis(ac, ni,5)) {//碰撞判断
-                    if(ni.getY()>=ac.getTopY()-20) {	//判断是否在木桩上方
-                        if(ni.setBridge(ac)) {			//设置木桩
+                if(CollisionUtils.isCollis(ac, ni,5)) {//Collision judgment
+                    if(ni.getY()>=ac.getTopY()-20) {	//Determine if it is above the bridge
+                        if(ni.setBridge(ac)) {			//set up the bridge
                             ni.setPlay(true);
-                            ni.setType(0);				//设置状态
+                            ni.setType(0);				//set up the status
                             ni.setY(ac.getTopY()-5);
                             ni.setUp(false);
                         }
@@ -448,7 +440,7 @@ public class MainStage extends IStage {
             }
 
         }
-        /**调用碰撞物品方法*/
+        /**Call the collision item method*/
         isCollPt();
 
         isEnemy();
@@ -456,37 +448,37 @@ public class MainStage extends IStage {
         isDar();
     }
 
-    /**碰撞物品*/
+    /**Collision items*/
     public void isCollPt() {
-        Iterator<ImageActor> pt = this.pt.iterator();//遍历器
-        while(pt.hasNext()) {		//遍历集合
-            ImageActor xt = pt.next();	//取出数据
+        Iterator<ImageActor> pt = this.pt.iterator();
+        while(pt.hasNext()) {		//Iterate through the collection
+            ImageActor xt = pt.next();	//Take out the data
             if(!xt.isCollision()&&CollisionUtils.isCollis(xt, ni, 5)) {	//判断是否碰撞，且是否是已配置过
-                xt.setCollision(true);		//设置已配置
-                    if (xt instanceof DaoActor) {    //判断是否碰撞刀
-                        ni.setLife(ni.getLife() - 1);    //将生命减一
-                    } else if (xt instanceof ArticleActor) {    //判断碰撞的道具
-                        if (((ArticleActor) xt).getType() == ArticleActor.Type.darts) {//碰撞的是否为飞镖
-                            ni.setDarts(ni.getDarts() + 1);    //增加飞镖
+                xt.setCollision(true);		//The settings are configured
+                    if (xt instanceof DaoActor) {    //Determine whether to collide with the knife
+                        ni.setLife(ni.getLife() - 1);    //life--
+                    } else if (xt instanceof ArticleActor) {    //Determine the items that collide
+                        if (((ArticleActor) xt).getType() == ArticleActor.Type.darts) {//Whether the collision was a dart
+                            ni.setDarts(ni.getDarts() + 1);    //dart++
                         } else if (((ArticleActor) xt).getType() == ArticleActor.Type.heart) {//碰撞是否生命
-                            ni.setLife(ni.getLife() + 1);        //生命加一
+                            ni.setLife(ni.getLife() + 1);        //life++
 
                         }
-                        pt.remove();                        //移除该物品
-                        arPool.free((ArticleActor) xt);        //放入对象池
-                        this.getRoot().removeActor(xt);        //移除对象
+                        pt.remove();                        //remove the item
+                        arPool.free((ArticleActor) xt);        //put into pool
+                        this.getRoot().removeActor(xt);        //remove the object
                     }
             }
         }
     }
-    /**碰撞敌人*/
+    /**Collision enemy*/
     public void isEnemy() {
-        Iterator<AnimationsActor> pt = anList.iterator();//遍历器
+        Iterator<AnimationsActor> pt = anList.iterator();
         while(pt.hasNext()) {
             AnimationsActor ac = pt.next();
             if (!ac.isCollision() && CollisionUtils.isCollis(ac, ni, 10)) {
                 ac.setCollision(true);
-                if (ni.getType() != 2) { // 判断当前状态是否为旋转状态
+                if (ni.getType() != 2) { //Determines whether the current state is rotated
                     ni.setLife(ni.getLife() - 1);
                 }
             }
