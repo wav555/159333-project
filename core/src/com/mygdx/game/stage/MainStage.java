@@ -30,6 +30,9 @@ import com.mygdx.game.stage.IStage.IStage;
 import com.mygdx.game.utii.AnimationUtii;
 import com.mygdx.game.utii.CollisionUtils;
 import com.mygdx.game.utii.R;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.assets.AssetManager;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -158,7 +161,7 @@ public class MainStage extends IStage {
 
         //Bridge
         bridge =new Bridge(getMain(), 2);
-        bridge.setSeed(R.Physical.SEED_X);	//设置移动速度
+        bridge.setSeed(R.Physical.SEED_X);	//set speed of movement
 
         //Calculate the maximum and minimum TopY coordinates
         bridgeTopYMin = Math.max(100, getHeight()- bridge.getHeight()-R.Physical.NIN_UP_SEED/2) ;
@@ -233,13 +236,13 @@ public class MainStage extends IStage {
     public Bridge createBridge() {
         /**TopY of bridge*/
         float topY = MathUtils.random(bridgeTopYMin-80, bridgeTopYMax+100);
-        Bridge br =  pool.obtain();	//创建木桩
+        Bridge br =  pool.obtain();	// create bridge
         br.setMian(getMain());
         br.setSum(MathUtils.random(1,3));
         if(poolList.size()==0)
             br.setX(0);
         else
-            br.setX(poolList.get(poolList.size()-1).getReightX()+50);
+            br.setX(poolList.get(poolList.size()-1).getReightX()+160);
         br.setY(0);
         br.setY(topY - br.getHeight());
         br.setSeed(R.Physical.SEED_X);
@@ -365,7 +368,7 @@ public class MainStage extends IStage {
     }
 
     /**crow*/
-    public void createCrow() {
+    public void createCrow() {//乌鸦
         float topY = MathUtils.random(300, 500);
         CrowActor crow = crowPool.obtain();
         crow.setMain(getMain());
@@ -385,10 +388,9 @@ public class MainStage extends IStage {
         this.addActor(dao);
         this.pt.add(dao);
         dao.setZIndex(this.nuActor.getZIndex());
-
     }
     /**create items*/
-    public void creatAr() {
+    public void creatAr() {//创建爱心
         float topY = MathUtils.random(200, 400);
         ArticleActor ar = arPool.obtain();
         ar.setMain(getMain());
@@ -400,7 +402,7 @@ public class MainStage extends IStage {
         ar.setZIndex(this.nuActor.getZIndex());
     }
     /**create ninja**/
-    public void creatNin() {
+    public void creatNin() {//忍者
         ni = new NinjaActor(getMain());
         ni.setContX(200);
         ni.setY(300);
@@ -409,7 +411,7 @@ public class MainStage extends IStage {
         ni.setZIndex(this.nuActor.getZIndex());
     }
     /**create dart*/
-    public void creatDart() {
+    public void creatDart() {//保护
         DartsActor dar = darPool.obtain();
         dar.setY(ni.getY()+ni.getHeight()/2);
         dar.setX(ni.getReightX()+10);
@@ -419,6 +421,18 @@ public class MainStage extends IStage {
         this.addActor(dar);
         this.darList.add(dar);
     }
+
+//    public void creatMoney() {
+//        float topY = MathUtils.random(200, 400);
+//        Money m = moneyPool.obtain();
+//        m.setMain(getMain());
+//        m.setY	(topY-m.getHeight());
+//        m.setX(getWidth());
+//        m.setSeed(R.Physical.SEED_X);
+//        this.addActor(m);
+//        this.pt.add(m);
+//        m.setZIndex(this.nuActor.getZIndex());
+//    }
 
     /**The method of colliding with bridges*/
     public void isColl() {
@@ -447,25 +461,59 @@ public class MainStage extends IStage {
 
         isDar();
     }
+    AssetManager yourAssetManager = new AssetManager();
 
     /**Collision items*/
     public void isCollPt() {
         Iterator<ImageActor> pt = this.pt.iterator();
+//        AssetManager yourAssetManager = new AssetManager();
         while(pt.hasNext()) {		//Iterate through the collection
             ImageActor xt = pt.next();	//Take out the data
-            if(!xt.isCollision()&&CollisionUtils.isCollis(xt, ni, 5)) {	//判断是否碰撞，且是否是已配置过
+            if(!xt.isCollision()&&CollisionUtils.isCollis(xt, ni, 5)) {	//judge if they collide
                 xt.setCollision(true);		//The settings are configured
                     if (xt instanceof DaoActor) {    //Determine whether to collide with the knife
-                        ni.setLife(ni.getLife() - 1);    //life--
-                    } else if (xt instanceof ArticleActor) {    //Determine the items that collide
-                        if (((ArticleActor) xt).getType() == ArticleActor.Type.darts) {//Whether the collision was a dart
-                            ni.setDarts(ni.getDarts() + 1);    //dart++
-                        } else if (((ArticleActor) xt).getType() == ArticleActor.Type.heart) {//碰撞是否生命
-                            ni.setLife(ni.getLife() + 1);        //life++
-
+                        ni.setLife(ni.getLife() - 1);//life--
+                        yourAssetManager.load("knife.mp3", Sound.class);
+                        yourAssetManager.finishLoading();
+                        if (yourAssetManager.isLoaded("knife.mp3", Sound.class)) {
+                            Sound sound = yourAssetManager.get("knife.mp3", Sound.class);
+                            long soundID=sound.play();
+                            sound.setVolume(soundID,-1.5F);
                         }
+                    }
+                    else if (xt instanceof ArticleActor) {    //Determine the items that collide
+                        if (((ArticleActor) xt).getType() == ArticleActor.Type.darts) {//Whether the collision was a dart
+                            ni.setDarts(ni.getDarts() + 1);//dart++
+                            yourAssetManager.load("getLife.wav", Sound.class);
+                            yourAssetManager.finishLoading();
+                            if (yourAssetManager.isLoaded("getLife.wav", Sound.class)) {
+                                Sound sound = yourAssetManager.get("getLife.wav", Sound.class);
+                                long soundID=sound.play();
+                                sound.setVolume(soundID,1.7F);
+                            }
+                        } else if (((ArticleActor) xt).getType() == ArticleActor.Type.heart) {//judge if he gets a heart
+                            ni.setLife(ni.getLife() + 1);        //life++
+                            yourAssetManager.load("ding.mp3", Sound.class);
+                            yourAssetManager.finishLoading();
+                            if (yourAssetManager.isLoaded("ding.mp3", Sound.class)) {
+                                Sound sound = yourAssetManager.get("ding.mp3", Sound.class);
+                                long soundID=sound.play();
+                                sound.setVolume(soundID,-1.5F);
+                            }
+                        }else if (((ArticleActor) xt).getType() == ArticleActor.Type.money) {//judge if he gets a heart
+                            ni.setMoneyNumber(ni.getMoneyNumber() + 1);        //life++
+                            yourAssetManager.load("ding.mp3", Sound.class);
+                            yourAssetManager.finishLoading();
+                            if (yourAssetManager.isLoaded("ding.mp3", Sound.class)) {
+                                Sound sound = yourAssetManager.get("ding.mp3", Sound.class);
+                                long soundID=sound.play();
+                                sound.setVolume(soundID,-1.5F);
+                            }
+                        }
+
                         pt.remove();                        //remove the item
-                        arPool.free((ArticleActor) xt);        //put into pool
+                        arPool.free((ArticleActor) xt);//put into pool
+
                         this.getRoot().removeActor(xt);        //remove the object
                     }
             }
@@ -480,6 +528,13 @@ public class MainStage extends IStage {
                 ac.setCollision(true);
                 if (ni.getType() != 2) { //Determines whether the current state is rotated
                     ni.setLife(ni.getLife() - 1);
+                    yourAssetManager.load("knife.mp3", Sound.class);
+                    yourAssetManager.finishLoading();
+                    if (yourAssetManager.isLoaded("knife.mp3", Sound.class)) {
+                        Sound sound = yourAssetManager.get("knife.mp3", Sound.class);
+                        long soundID=sound.play();
+                        sound.setVolume(soundID,-1.5F);
+                    }
                 }
             }
         }
@@ -501,8 +556,16 @@ public class MainStage extends IStage {
 
     private void death() {
         if(ni.getLife() <=0||ni.getTopY()<=0) {
+            yourAssetManager.load("fail.wav", Sound.class);
+            yourAssetManager.finishLoading();
+            if (yourAssetManager.isLoaded("fail.wav", Sound.class)) {
+                Sound sound = yourAssetManager.get("fail.wav", Sound.class);
+                long soundID=sound.play();
+                sound.setVolume(soundID,1.5F);
+            }
             this.setView(false);
             getMain().getGameScreen().showOver((int)min);
+
         }
     }
 

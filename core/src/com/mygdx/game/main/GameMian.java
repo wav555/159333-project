@@ -89,7 +89,7 @@ public class GameMian extends Game {
         music.setLooping(true);
 
         // Set volume, value range 0.0~1.0
-        music.setVolume(1.2F);
+        music.setVolume(0.5F);
         // int jumpSound1Id = sound.load(context, R.raw.jump_sound_1, 1);
         music.play();
 

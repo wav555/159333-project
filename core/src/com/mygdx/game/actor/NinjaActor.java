@@ -24,6 +24,7 @@ public class NinjaActor extends AnimationsActor {
     private boolean isDart;//if send darts
     private float centex;
     private int life=5;//num of life
+    private int moneyNumber=0;
     private int darts = 0;//num of darts
     private float UpSeed = 3;//up speed
     private float downSeed = -300;//down speed
@@ -69,6 +70,11 @@ public class NinjaActor extends AnimationsActor {
         for(int i=0;i<life;i++) {
             batch.draw(lifeImage, i*lifeImage.getRegionWidth(), main.getWordHeight()-lifeImage.getRegionHeight());
         }
+
+        for(int i=0;i<moneyNumber;i++) {
+            batch.draw(dartsImage, i*dartsImage.getRegionWidth(), main.getWordHeight()/2+100-lifeImage.getRegionHeight());
+        }
+
 
     }
 
@@ -228,7 +234,13 @@ public class NinjaActor extends AnimationsActor {
         this.darts = darts;
     }
 
+    public int getMoneyNumber() {
+        return moneyNumber;
+    }
 
+    public void setMoneyNumber(int moneyNumber) {
+        this.moneyNumber = moneyNumber;
+    }
     @Override
     public synchronized void setType(int type) {
         // TODO Auto-generated method stub
