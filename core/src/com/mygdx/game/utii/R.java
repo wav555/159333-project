@@ -12,6 +12,7 @@ public class R {
         /**游戏结束按钮*/
        // public static final String IMAGE_BUTTON_OVER_QUIT_DOWN = "over_quit_down";
         public static final String IMAGE_BUTTON_OVER_QUIT_UP = "over_quit_up";
+        public static final String IMAGE_BUTTON_EXIT = "exit";
         /**游戏开始按钮*/
       //  public static final String IMAGE_BUTTON_PLAY_DOWN = "play_down";
         public static final String IMAGE_BUTTON_PLAY_UP = "play_up";

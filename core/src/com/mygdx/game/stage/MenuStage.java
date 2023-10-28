@@ -18,7 +18,7 @@ public class MenuStage extends IStage {
     /**成就按钮*/
     //private ImageButton hid;
     /**推出游戏*/
-    private ImageButton over;
+    private ImageButton exit;
     //其他按钮
     //private ImageButton move;
     //帮助按钮
@@ -55,18 +55,17 @@ public class MenuStage extends IStage {
         this.addActor(play);
 
         /**创建成就按钮*/
-//		hid = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_ACHI_UP)),
-//				new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_ACHI_DOWN)));
-//		hid.setX(getWidth()*60/100);
-//		hid.setY((getHeight()-getMain().getHeibian()/2)*23/100);
-//		this.addActor(hid);
-
-//        /**创建游戏结束按钮*/
-//        over = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_OVER_QUIT_UP)),
-//                new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_OVER_QUIT_UP)));
-//        over.setX(getWidth()*60/100);
-//        over.setY((getHeight()-getMain().getHeibian()/2)*5/100);
-//        this.addActor(over);
+		exit = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_EXIT)),
+                new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_EXIT)));
+        exit.setX(getWidth()*60/130);
+        exit.setY((getHeight()-getMain().getHeibian()/2)*5/100);
+        exit.addListener(new ClickListener(){
+            public void clicked(InputEvent event,float x,float y){
+                super.clicked(event,x,y);
+                System.exit(0);
+            }
+        });
+        this.addActor(exit);
 
         /**创建关于我按钮*/
 //        TextureRegion up = new TextureRegion(getMain().getAsset().get(R.emun.IMAGE_MORE_UP,Texture.class));
