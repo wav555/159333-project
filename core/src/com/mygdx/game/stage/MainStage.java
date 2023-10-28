@@ -1,5 +1,7 @@
 package com.mygdx.game.stage;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -447,7 +449,7 @@ public class MainStage extends IStage {
 
         isDar();
     }
-
+    AssetManager yourAssetManager = new AssetManager();
     /**Collision items*/
     public void isCollPt() {
         Iterator<ImageActor> pt = this.pt.iterator();
@@ -456,13 +458,33 @@ public class MainStage extends IStage {
             if(!xt.isCollision()&&CollisionUtils.isCollis(xt, ni, 5)) {	//judge if they collide
                 xt.setCollision(true);		//The settings are configured
                     if (xt instanceof DaoActor) {    //Determine whether to collide with the knife
-                        ni.setLife(ni.getLife() - 1);    //life--
+                        ni.setLife(ni.getLife() - 1);//life--
+                        yourAssetManager.load("knife.mp3", Sound.class);
+                        yourAssetManager.finishLoading();
+                        if (yourAssetManager.isLoaded("knife.mp3", Sound.class)) {
+                            Sound sound = yourAssetManager.get("knife.mp3", Sound.class);
+                            long soundID = sound.play();
+                            sound.setVolume(soundID, -1.5F);
+                        }
                     } else if (xt instanceof ArticleActor) {    //Determine the items that collide
                         if (((ArticleActor) xt).getType() == ArticleActor.Type.darts) {//Whether the collision was a dart
                             ni.setDarts(ni.getDarts() + 1);    //dart++
+                            yourAssetManager.load("getLife.wav", Sound.class);
+                            yourAssetManager.finishLoading();
+                            if (yourAssetManager.isLoaded("getLife.wav", Sound.class)) {
+                                Sound sound = yourAssetManager.get("getLife.wav", Sound.class);
+                                long soundID = sound.play();
+                                sound.setVolume(soundID, 1.7F);
+                            }
                         } else if (((ArticleActor) xt).getType() == ArticleActor.Type.heart) {//judge if he gets a heart
                             ni.setLife(ni.getLife() + 1);        //life++
-
+                            yourAssetManager.load("ding.mp3", Sound.class);
+                            yourAssetManager.finishLoading();
+                            if (yourAssetManager.isLoaded("ding.mp3", Sound.class)) {
+                                Sound sound = yourAssetManager.get("ding.mp3", Sound.class);
+                                long soundID = sound.play();
+                                sound.setVolume(soundID, -1.5F);
+                            }
                         }
                         pt.remove();                        //remove the item
                         arPool.free((ArticleActor) xt);        //put into pool
@@ -479,7 +501,14 @@ public class MainStage extends IStage {
             if (!ac.isCollision() && CollisionUtils.isCollis(ac, ni, 10)) {
                 ac.setCollision(true);
                 if (ni.getType() != 2) { //Determines whether the current state is rotated
-                    ni.setLife(ni.getLife() - 1);
+                    yourAssetManager.load("knife.mp3", Sound.class);
+                    yourAssetManager.finishLoading();
+                    if (yourAssetManager.isLoaded("knife.mp3", Sound.class)) {
+                        Sound sound = yourAssetManager.get("knife.mp3", Sound.class);
+                        long soundID = sound.play();
+                        sound.setVolume(soundID, -1.5F);
+                        ni.setLife(ni.getLife() - 1);
+                    }
                 }
             }
         }
@@ -501,6 +530,13 @@ public class MainStage extends IStage {
 
     private void death() {
         if(ni.getLife() <=0||ni.getTopY()<=0) {
+            yourAssetManager.load("fail.wav", Sound.class);
+            yourAssetManager.finishLoading();
+            if (yourAssetManager.isLoaded("fail.wav", Sound.class)) {
+                Sound sound = yourAssetManager.get("fail.wav", Sound.class);
+                long soundID = sound.play();
+                sound.setVolume(soundID, 1.5F);
+            }
             this.setView(false);
             getMain().getGameScreen().showOver((int)min);
         }
