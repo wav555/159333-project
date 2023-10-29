@@ -22,7 +22,7 @@ public class OverStage extends IStage {
     private BackgroundActor bark;
     private ImageButton quit;
     private ImageButton tryz;
-  private ArrayList<Integer> historyScores; // Historical score collection
+    private ArrayList<Integer> historyScores; // Historical score collection
 
     private Label ta;
 
@@ -95,16 +95,21 @@ public class OverStage extends IStage {
             historyScores.add(min);
         }
 
-
         // Sort historical scores to get the highest score
         Collections.sort(historyScores, Collections.reverseOrder());
 
         // Displays historical scores
-        String historyScoresText = "History High Scores:\n";
+        String historyScoresText = "History 3 Highest Scores:\n";
         for (int i = 0; i < Math.min(3, historyScores.size()); i++) {
             historyScoresText += historyScores.get(i) + " meters  ";
         }
         ta.setText(ta.getText()  + historyScoresText);
 
+//        ta.setText("hh"+getHistoryScores().get(0));
+
+    }
+
+    public ArrayList<Integer> getHistoryScores(){
+        return historyScores;
     }
 }

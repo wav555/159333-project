@@ -5,6 +5,8 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.mygdx.game.main.GameMian;
+import com.mygdx.game.stage.HelperStage;
+import com.mygdx.game.stage.RecordStage;
 import com.mygdx.game.stage.MainStage;
 import com.mygdx.game.stage.MenuStage;
 import com.mygdx.game.stage.OverStage;
@@ -20,6 +22,10 @@ public class GameScreen  extends ScreenAdapter {
 
     private OverStage over;
 
+    private RecordStage record;
+
+    private HelperStage helper;
+
 
     public GameScreen(GameMian mian) {
         this.mian = mian;
@@ -28,15 +34,23 @@ public class GameScreen  extends ScreenAdapter {
    //Initialize scene
     public void init() {
 
-       //menu
+        //menu stage
         menu = new MenuStage(mian, new StretchViewport(mian.getWordWidth(),mian.getWordHeight()));
         menu.setView(true);
         //main stage
         main = new MainStage(mian, new StretchViewport(mian.getWordWidth(),mian.getWordHeight()));
         main.setView(false);//At the beginning, display the menu without displaying the main scene
-
+        //over stage
         over = new OverStage(mian, new StretchViewport(mian.getWordWidth(),mian.getWordHeight()));
         over.setView(false);//End interface not displayed
+        //record stage
+        record = new RecordStage(mian, new StretchViewport(mian.getWordWidth(),mian.getWordHeight()));
+        record.setView(false);
+
+        //helper stage
+        helper = new HelperStage(mian, new StretchViewport(mian.getWordWidth(),mian.getWordHeight()));
+        helper.setView(false);
+
         //Set up touch screen monitoring
         Gdx.input.setInputProcessor(menu);
     }
@@ -59,6 +73,16 @@ public class GameScreen  extends ScreenAdapter {
         if(over.isView()) {
             over.act(delta);
             over.draw();
+        }
+
+        if(record.isView()){
+            record.act(delta);
+            record.draw();
+        }
+
+        if(helper.isView()) {
+            helper.act(delta);
+            helper.draw();
         }
     }
 
@@ -87,6 +111,14 @@ public class GameScreen  extends ScreenAdapter {
         if(over != null) {
             over.dispose();
         }
+
+        if(record!=null){
+            record.dispose();
+        }
+
+        if(helper!=null){
+            helper.dispose();
+        }
     }
 
 
@@ -99,6 +131,21 @@ public class GameScreen  extends ScreenAdapter {
         over.setMin(min);
         over.setView(true);
         Gdx.input.setInputProcessor(over);
+    }
+
+    public void showHelper(){
+        helper.setView(true);
+        Gdx.input.setInputProcessor(helper);
+    }
+
+    public void show(OverStage over) {
+        record.showRecord(over);
+        record.setView(true);
+        Gdx.input.setInputProcessor(record);
+    }
+
+    public void showRecord1(){
+        show(over);
     }
 
 }

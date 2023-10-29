@@ -158,7 +158,7 @@ public class MainStage extends IStage {
 
         //Bridge
         bridge =new Bridge(getMain(), 2);
-        bridge.setSeed(R.Physical.SEED_X);	//设置移动速度
+        bridge.setSeed(R.Physical.SEED_X);	//set speed of movement
 
         //Calculate the maximum and minimum TopY coordinates
         bridgeTopYMin = Math.max(100, getHeight()- bridge.getHeight()-R.Physical.NIN_UP_SEED/2) ;
@@ -233,13 +233,13 @@ public class MainStage extends IStage {
     public Bridge createBridge() {
         /**TopY of bridge*/
         float topY = MathUtils.random(bridgeTopYMin-80, bridgeTopYMax+100);
-        Bridge br =  pool.obtain();	//创建木桩
+        Bridge br =  pool.obtain();	// create bridge
         br.setMian(getMain());
         br.setSum(MathUtils.random(1,3));
         if(poolList.size()==0)
             br.setX(0);
         else
-            br.setX(poolList.get(poolList.size()-1).getReightX()+50);
+            br.setX(poolList.get(poolList.size()-1).getReightX()+160);
         br.setY(0);
         br.setY(topY - br.getHeight());
         br.setSeed(R.Physical.SEED_X);
@@ -453,14 +453,14 @@ public class MainStage extends IStage {
         Iterator<ImageActor> pt = this.pt.iterator();
         while(pt.hasNext()) {		//Iterate through the collection
             ImageActor xt = pt.next();	//Take out the data
-            if(!xt.isCollision()&&CollisionUtils.isCollis(xt, ni, 5)) {	//判断是否碰撞，且是否是已配置过
+            if(!xt.isCollision()&&CollisionUtils.isCollis(xt, ni, 5)) {	//judge if they collide
                 xt.setCollision(true);		//The settings are configured
                     if (xt instanceof DaoActor) {    //Determine whether to collide with the knife
                         ni.setLife(ni.getLife() - 1);    //life--
                     } else if (xt instanceof ArticleActor) {    //Determine the items that collide
                         if (((ArticleActor) xt).getType() == ArticleActor.Type.darts) {//Whether the collision was a dart
                             ni.setDarts(ni.getDarts() + 1);    //dart++
-                        } else if (((ArticleActor) xt).getType() == ArticleActor.Type.heart) {//碰撞是否生命
+                        } else if (((ArticleActor) xt).getType() == ArticleActor.Type.heart) {//judge if he gets a heart
                             ni.setLife(ni.getLife() + 1);        //life++
 
                         }
@@ -505,5 +505,7 @@ public class MainStage extends IStage {
             getMain().getGameScreen().showOver((int)min);
         }
     }
+
+
 
 }
