@@ -31,7 +31,7 @@ public class RecordStage extends IStage {
     }
 
     private void init(GameMian main){
-        back = new BackgroundActor(new TextureRegion(main.getAsset().get(R.Over.background	, Texture .class)));
+        back = new BackgroundActor(new TextureRegion(main.getAsset().get(R.Record.background	, Texture .class)));
         back.setCenter(getWidth()/2, getHeight()/2);
         this.addActor(back);
 
@@ -49,8 +49,8 @@ public class RecordStage extends IStage {
             }
         });
 
-        tryz = new ImageButton(new TextureRegionDrawable(main.getAtlas().findRegion(R.Over.OVER_TRY_UP)),
-                new TextureRegionDrawable(main.getAtlas().findRegion(R.Over.OVER_TRY_UP)));
+        tryz = new ImageButton(new TextureRegionDrawable(main.getAtlas().findRegion(R.Record.IMAGE_BUTTON_STAR)),
+                new TextureRegionDrawable(main.getAtlas().findRegion(R.Record.IMAGE_BUTTON_STAR)));
         tryz.setX(550);
         tryz.setY(75);
 

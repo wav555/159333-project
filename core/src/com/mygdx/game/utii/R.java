@@ -12,6 +12,12 @@ public class R {
         /**游戏结束按钮*/
        // public static final String IMAGE_BUTTON_OVER_QUIT_DOWN = "over_quit_down";
         public static final String IMAGE_BUTTON_OVER_QUIT_UP = "over_quit_up";
+
+        public static final String IMAGE_BUTTON_PLAY_EXIT = "play_exit";
+
+        public static final String IMAGE_BUTTON_PLAY_HELPER = "play_helper";
+        public static final String IMAGE_BUTTON_PLAY_RECORD = "play_record";
+
         public static final String IMAGE_BUTTON_EXIT = "exit";
 
         /**游戏开始按钮*/
@@ -102,5 +108,9 @@ public class R {
 
 //        public static final String OVER_SUB_DOWN = "over_submit_down";
 //        public static final String OVER_SUB_UP = "over_submit_up";
+    }
+    public interface Record{
+        public static final String background = "image/button/b_board.jpg";
+        public static final String IMAGE_BUTTON_STAR = "start";
     }
 }

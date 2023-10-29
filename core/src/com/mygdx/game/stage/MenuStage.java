@@ -40,7 +40,7 @@ public class MenuStage extends IStage {
         /**start playing button*/
         play = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)),
                 new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)));
-        play.setX(getWidth()*60/130);
+        play.setX(getWidth()*63/130);
         play.setY((getHeight()-getMain().getHeibian()/2)*20/100);
         play.addListener(new ClickListener() {
             @Override
@@ -54,10 +54,10 @@ public class MenuStage extends IStage {
         this.addActor(play);
 
         /**exit button*/
-		exit = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_EXIT)),
-                new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_EXIT)));
-        exit.setX(getWidth()*60/130);
-        exit.setY((getHeight()-getMain().getHeibian()/2)*5/100);
+		exit = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_EXIT)),
+                new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_EXIT)));
+        exit.setX(getWidth()*12/13);
+        exit.setY((getHeight()-getMain().getHeibian()/2)/100);
         exit.addListener(new ClickListener(){
             public void clicked(InputEvent event,float x,float y){
                 super.clicked(event,x,y);
@@ -66,10 +66,10 @@ public class MenuStage extends IStage {
         });
         this.addActor(exit);
 
-        helper = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)),
-                new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)));
-        helper.setX(getWidth()*10/180);
-        helper.setY((getHeight()-getMain().getHeibian()/2)*20/30);
+        helper = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_HELPER)),
+                new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_HELPER)));
+        helper.setX(getWidth()*119/130);
+        helper.setY((getHeight()-getMain().getHeibian()/2)*5/6);
         helper.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -81,10 +81,10 @@ public class MenuStage extends IStage {
         });
         this.addActor(helper);
 
-        record = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)),
-                new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_UP)));
-        record.setX(getWidth()*10/180);
-        record.setY((getHeight()-getMain().getHeibian()/2)*20/30);
+        record = new ImageButton(new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_RECORD)),
+                new TextureRegionDrawable(getMain().getAtlas().findRegion(R.emun.IMAGE_BUTTON_PLAY_RECORD)));
+        record.setX(getWidth()/25);
+        record.setY((getHeight()-getMain().getHeibian()/2)*11/15);
         record.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

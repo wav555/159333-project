@@ -1,5 +1,5 @@
 menu.png
-size: 856, 281
+size: 2004, 171
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -20,34 +20,27 @@ over_try_up
 play_exit
   rotate: false
   xy: 600, 0
-  size: 68, 100
-  orig: 68, 100
+  size: 516, 171
+  orig: 516, 171
   offset: 0, 0
   index: -1
 play_helper
   rotate: false
-  xy: 668, 0
+  xy: 1116, 0
   size: 72, 72
   orig: 72, 72
   offset: 0, 0
   index: -1
-play_record
-  rotate: false
-  xy: 740, 0
-  size: 116, 110
-  orig: 116, 110
-  offset: 0, 0
-  index: -1
 play_up
   rotate: false
-  xy: 0, 110
+  xy: 1188, 0
   size: 516, 171
   orig: 516, 171
   offset: 0, 0
   index: -1
 start
   rotate: false
-  xy: 516, 110
+  xy: 1704, 0
   size: 300, 100
   orig: 300, 100
   offset: 0, 0

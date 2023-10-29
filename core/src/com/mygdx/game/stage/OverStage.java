@@ -83,30 +83,26 @@ public class OverStage extends IStage {
     public void setMin(int min) {
         ta.setText("Score: " + min + " meters\n");
         if(!historyScores.isEmpty()){
-            // Determine whether the score exceeds the all-time high
+            // Determine whether the score exceeds the highest
             int highestScore = historyScores.get(0);
             if (min > highestScore) {
                 ta.setText(ta.getText() + "New Highest Score!\n");
             }
-            // Add this score to the historical score collection
+            // Add this score to the historyScores collection
             historyScores.add(min);
         }else{
-            // Add this score to the historical score collection
+            // Add this score to the historyScores collection
             historyScores.add(min);
+            ta.setText(ta.getText() + "New Highest Score!\n");
         }
-
-        // Sort historical scores to get the highest score
+        // Sort historyScores to get the highest score
         Collections.sort(historyScores, Collections.reverseOrder());
-
-        // Displays historical scores
+        // Displays historyScores
         String historyScoresText = "History 3 Highest Scores:\n";
         for (int i = 0; i < Math.min(3, historyScores.size()); i++) {
             historyScoresText += historyScores.get(i) + " meters  ";
         }
         ta.setText(ta.getText()  + historyScoresText);
-
-//        ta.setText("hh"+getHistoryScores().get(0));
-
     }
 
     public ArrayList<Integer> getHistoryScores(){

@@ -29,7 +29,7 @@ public class HelperStage extends IStage {
     }
 
     private void init(GameMian main) {
-        bark = new BackgroundActor(new TextureRegion(main.getAsset().get(R.Over.background	, Texture.class)));
+        bark = new BackgroundActor(new TextureRegion(main.getAsset().get(R.Record.background	, Texture.class)));
         bark.setCenter(getWidth()/2, getHeight()/2);
         this.addActor(bark);
 
@@ -51,7 +51,7 @@ public class HelperStage extends IStage {
         Label.LabelStyle style = new Label.LabelStyle();
         style.font = main.getFont();
         ta  = new Label("",style);
-        ta.setText("Author: LLY LJY ZXY ZQY\nContact:lily.li.01@outlook.com");
+        ta.setText("\nAuthor: Xinyi Zhang\n             Lingyi Li\n             Jingyi Liu\n             Qingyu Zhang\nContact: 1467821297@qq.com");
         ta.setPosition(130, getHeight()-220);
         ta.setColor(Color.BLACK);
         ta.setFontScale(1f);

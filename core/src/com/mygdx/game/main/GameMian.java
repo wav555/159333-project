@@ -60,6 +60,7 @@ public class GameMian extends Game {
         asset.load(R.Actor.IMAGE_CROW, Texture.class);
 
         asset.load(R.Over.background,Texture.class);
+        asset.load(R.Record.background,Texture.class);
 
 
         asset.load(R.Font.FONT, BitmapFont.class);

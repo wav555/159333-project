@@ -44,25 +44,16 @@ public class ArticleActor extends ImageActor {
         if(ran < 40) {
             type = ArticleActor.Type.heart;
             setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_FOODBLOOD));
-        }else if(ran>=40||ran<80){
-//            type =  ArticleActor.Type.darts;
-//            if(an == null) {
-//                an = AnimationUtii.createAnimation((Texture) (main.getAsset().get(R.BackGround.IMAGE_DART_FOOD)), 1, 3);
-//                setTexture((TextureRegion) an.getKeyFrame(0));
-//                setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_DARTSHOW));
-//            }
-            type= ArticleActor.Type.money;
-            setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_FOODBLOOD));
-
-        }else if(ran>=80){
-//            type= ArticleActor.Type.money;
-//            setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_FOODBLOOD));
+        }else {
             type =  ArticleActor.Type.darts;
             if(an == null) {
                 an = AnimationUtii.createAnimation((Texture) (main.getAsset().get(R.BackGround.IMAGE_DART_FOOD)), 1, 3);
                 setTexture((TextureRegion) an.getKeyFrame(0));
                 setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_DARTSHOW));
             }
+//            type= ArticleActor.Type.money;
+//            setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_FOODBLOOD));
+
         }
 
     }
