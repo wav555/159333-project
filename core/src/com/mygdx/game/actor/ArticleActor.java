@@ -42,36 +42,15 @@ public class ArticleActor extends ImageActor {
         if(this.main == null)
             this.main = main;
         int ran = MathUtils.random(1, 3);
-//        if(ran < 40) {
-//            type = ArticleActor.Type.heart;
-//            setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_FOODBLOOD));
-//        }else {
-//            type =  ArticleActor.Type.darts;
-//            if(an == null) {
-//                an = AnimationUtii.createAnimation((Texture) (main.getAsset().get(R.BackGround.IMAGE_DART_FOOD)), 1, 3);
-//                setTexture((TextureRegion) an.getKeyFrame(0));
-//                setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_DARTSHOW));
-//            }
-////            type= ArticleActor.Type.money;
-////            setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_FOODBLOOD));
-//
-//        }
 
         if(ran <= 1.0) {
             type = ArticleActor.Type.heart;
             setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_FOODBLOOD));
         }else if(ran>1.0&&ran<=2.0){
-//            type =  ArticleActor.Type.darts;
-//            if(an == null) {
-//                an = AnimationUtii.createAnimation((Texture) (main.getAsset().get(R.BackGround.IMAGE_DART_FOOD)), 1, 3);
-//                setTexture((TextureRegion) an.getKeyFrame(0));
-//                setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_DARTSHOW));
-//            }
             type= ArticleActor.Type.award;
             Texture texture = new Texture(Gdx.files.internal("money.png"));
             TextureRegion region = new TextureRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
             setTexture(region);
-//            setTexture(main.getMapatlas().findRegion(R.BackGround.IMAGE_FOODBLOOD));
 
         }else {
             type =  ArticleActor.Type.darts;

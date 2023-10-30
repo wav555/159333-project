@@ -80,8 +80,6 @@ public class NinjaActor extends AnimationsActor {
         font.getData().setScale(2);
         font.draw(batch, ": "+moneyNumber, 10+awardImage.getRegionWidth(),main.getWordHeight()/2+100-lifeImage.getRegionHeight());
 
-
-
     }
 
     @Override
@@ -172,12 +170,10 @@ public class NinjaActor extends AnimationsActor {
         }
     }
 
-
     public void setUpSeed(float seed) {
         this.UpSeed = seed;
 
     }
-
 
     public boolean setBridge(ImageActor bridge) {
         if(this.bridge != bridge) {

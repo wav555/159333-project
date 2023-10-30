@@ -8,7 +8,7 @@ import com.mygdx.game.actor.beas.ImageActor;
 import com.mygdx.game.main.GameMian;
 import com.mygdx.game.utii.R;
 
-public class DaoActor extends ImageActor {
+public class DaoActor extends ImageActor {//knife
 
    // The length of the knife array
     private int sum;

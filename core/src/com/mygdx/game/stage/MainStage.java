@@ -542,7 +542,7 @@ public class MainStage extends IStage {
             }
             this.setView(false);
             int mm= ni.getMoneyNumber();
-            getMain().getGameScreen().showOver((int)min);
+            getMain().getGameScreen().showOver((int)min,mm);
         }
     }
 

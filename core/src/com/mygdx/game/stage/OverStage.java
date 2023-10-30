@@ -23,6 +23,7 @@ public class OverStage extends IStage {
     private ImageButton quit;
     private ImageButton tryz;
     private ArrayList<Integer> historyScores; // Historical score collection
+    private int moneyCount;
 
     private Label ta;
 
@@ -107,5 +108,13 @@ public class OverStage extends IStage {
 
     public ArrayList<Integer> getHistoryScores(){
         return historyScores;
+    }
+
+    public void setMoneyCount(int money){
+        this.moneyCount=money;
+    }
+
+    public int getMoneyCount(){
+        return moneyCount;
     }
 }

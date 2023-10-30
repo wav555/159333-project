@@ -22,23 +22,12 @@ public class WarriorActor extends AnimationsActor {
 
     private float deathX,deathY;
 
-    public WarriorActor(GameMian main) {
-        setMain(main);
-        setLife(true);
-        setPlay(true);
-    }
-    public WarriorActor() {
-        setLife(true);
-        setPlay(true);
-    }
-
     public GameMian getMain() {
         return main;
     }
 
 
    //Set the game main class and animate it
-    public  Bridge bidge;
 
     public void setMain(GameMian main) {
         if(this.main != null) {

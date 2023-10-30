@@ -127,8 +127,9 @@ public class GameScreen  extends ScreenAdapter {
         Gdx.input.setInputProcessor(menu);
     }
 
-    public void showOver(int min) {
+    public void showOver(int min,int money) {
         over.setMin(min);
+        over.setMoneyCount(money);
         over.setView(true);
         Gdx.input.setInputProcessor(over);
     }

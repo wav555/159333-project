@@ -1,16 +1,13 @@
 package com.mygdx.game.utii;
 
 public class R {
-    /**纹理视图*/
+    /**texture view*/
     public static final String ATLAS_BUTTON = "image/button/menu.atlas";
     public static float BEI_SU = 1.5f;
-    /**菜单所使用的图片*/
+    /**Images used for menus*/
     public interface emun{
-        /**成就按钮*/
-//		public static final String IMAGE_BUTTON_ACHI_DOWN = "achi_down";
-//		public static final String IMAGE_BUTTON_ACHI_UP = "achi_up";
-        /**游戏结束按钮*/
-       // public static final String IMAGE_BUTTON_OVER_QUIT_DOWN = "over_quit_down";
+        /**game over button*/
+        //public static final String IMAGE_BUTTON_OVER_QUIT_DOWN = "over_quit_down";
         public static final String IMAGE_BUTTON_OVER_QUIT_UP = "over_quit_up";
 
         public static final String IMAGE_BUTTON_PLAY_EXIT = "play_exit";
@@ -20,26 +17,23 @@ public class R {
 
         public static final String IMAGE_BUTTON_EXIT = "exit";
 
-        /**游戏开始按钮*/
-      //  public static final String IMAGE_BUTTON_PLAY_DOWN = "play_down";
+        /**start game button*/
+       //public static final String IMAGE_BUTTON_PLAY_DOWN = "play_down";
         public static final String IMAGE_BUTTON_PLAY_UP = "play_up";
         public static final String IMAGE_BUTTON_MONEY = "image/button/money.png";
 
 
-        /**大图路径*/
+        /**Image*/
         static final String IMAGE_PTAH = "image/emun/";
-        /**菜单背景**/
+        /**menu background**/
         public static final String IMAGE_BRAGKGROUND = IMAGE_PTAH+"initbg.jpg";
-        /**关于我们*/
-       // public static final String IMAGE_MORE_UP = "image/emun/more1.png";
-        //public static final String IMAGE_MORE_DOWN = IMAGE_PTAH+"more2.png";
 
     }
 
     public interface BackGround {
         static final String IMAGE_PTAH = "image/background/";
 
-        /**背景**/
+        /**background**/
         public static final String IMAGE_BRAGKGROUND = IMAGE_PTAH+"bg1.jpg";
         public static final String IMAGE_BRAGKGROUND1 = IMAGE_PTAH+"bg2.png";
         public static final String IMAGE_BRAGKGROUND2 = IMAGE_PTAH+"bg3.png";

@@ -25,6 +25,8 @@ public class RecordStage extends IStage {
 
     private Label ta;
 
+    private int money=0;
+
     public RecordStage(GameMian main, Viewport view) {
         super(main, view);
         init(main);
@@ -91,7 +93,9 @@ public class RecordStage extends IStage {
         }else{
             historyScoresText+="No record. Please start a new game.";
         }
-        ta.setText(historyScoresText);
+        ta.setText(historyScoresText+"\n\n");
+        money=money+over.getMoneyCount();
+        ta.setText(ta.getText()+"Money Count: "+money);
     }
 
 }
