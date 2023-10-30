@@ -1,8 +1,10 @@
 package com.mygdx.game.actor;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
@@ -24,7 +26,7 @@ public class NinjaActor extends AnimationsActor {
     private boolean isDart;//if send darts
     private float centex;
     private int life=5;//num of life
-    private int moneyNumber=0;
+    private int moneyNumber=0;//the number of coins
     private int darts = 0;//num of darts
     private float UpSeed = 3;//up speed
     private float downSeed = -300;//down speed
@@ -71,9 +73,13 @@ public class NinjaActor extends AnimationsActor {
             batch.draw(lifeImage, i*lifeImage.getRegionWidth(), main.getWordHeight()-lifeImage.getRegionHeight());
         }
 
-        for(int i=0;i<moneyNumber;i++) {
-            batch.draw(dartsImage, i*dartsImage.getRegionWidth(), main.getWordHeight()/2+100-lifeImage.getRegionHeight());
-        }
+        Texture texture = new Texture(Gdx.files.internal("money.png"));
+        TextureRegion awardImage = new TextureRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
+        batch.draw(awardImage,5,main.getWordHeight()/2+100-lifeImage.getRegionHeight()-25);
+        BitmapFont font = new BitmapFont();
+        font.getData().setScale(2);
+        font.draw(batch, ": "+moneyNumber, 10+awardImage.getRegionWidth(),main.getWordHeight()/2+100-lifeImage.getRegionHeight());
+
 
 
     }

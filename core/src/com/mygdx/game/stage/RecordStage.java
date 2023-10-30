@@ -91,7 +91,6 @@ public class RecordStage extends IStage {
         }else{
             historyScoresText+="No record. Please start a new game.";
         }
-
         ta.setText(historyScoresText);
     }
 

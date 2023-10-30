@@ -98,7 +98,6 @@ public class MainStage extends IStage {
         poolList.clear();
         pool.clear();
 
-
     }
     public void addActors() {
         R.BEI_SU = 1f;
@@ -480,6 +479,15 @@ public class MainStage extends IStage {
                             long soundID = sound.play();
                             sound.setVolume(soundID, 1.5F);
                         }
+                    }else if (((ArticleActor) xt).getType() == ArticleActor.Type.award) {//judge if he gets a heart
+                        ni.setMoneyNumber(ni.getMoneyNumber() + 1);        //life++
+                        yourAssetManager.load("ding.mp3", Sound.class);
+                        yourAssetManager.finishLoading();
+                        if (yourAssetManager.isLoaded("ding.mp3", Sound.class)) {
+                            Sound sound = yourAssetManager.get("ding.mp3", Sound.class);
+                            long soundID = sound.play();
+                            sound.setVolume(soundID, 1.5F);
+                        }
                     }
                     pt.remove();                        //remove the item
                     arPool.free((ArticleActor) xt);        //put into pool
@@ -533,6 +541,7 @@ public class MainStage extends IStage {
                 sound.setVolume(soundID, 1.5F);
             }
             this.setView(false);
+            int mm= ni.getMoneyNumber();
             getMain().getGameScreen().showOver((int)min);
         }
     }
