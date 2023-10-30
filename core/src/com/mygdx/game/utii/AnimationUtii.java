@@ -7,14 +7,14 @@ public class AnimationUtii {
 
     public static Animation createAnimation(Texture tx,int row ,int cols,Animation.PlayMode a,
                                             float date,boolean r,boolean c,int start,int end) {
-        int perCellWidth = tx.getWidth()/cols;
-        int perCellheight = tx.getHeight()/row;
-        TextureRegion[][] cell = TextureRegion.split(tx, perCellWidth, perCellheight);//split
-        TextureRegion[] z = new TextureRegion[row*cols];
-        int index =0;										//count
+        int perCellWidth = tx.getWidth()/cols; //calculate width
+        int perCellheight = tx.getHeight()/row;//calculate width
+        TextureRegion[][] cell = TextureRegion.split(tx, perCellWidth, perCellheight);
+        TextureRegion[] z = new TextureRegion[row*cols];// store texture using one-dimensional array
+        int index =0;
         for(int i=0;i<row;i++) {
             for(int j=0;j<cols;j++,index++) {
-                cell[i][j].flip(r, c);
+                cell[i][j].flip(r, c);// set if texture needs to be reversed
                 z[index] = cell[i][j];
             }
         }
@@ -27,11 +27,10 @@ public class AnimationUtii {
             }
             z = time;
         }
-        Animation animations = new Animation(date, z);	//animation
-        animations.setPlayMode(a);
+        Animation animations = new Animation(date, z);// create animations
+        animations.setPlayMode(a);// set play mode
 
         return animations;
-
 
     }
 
@@ -45,6 +44,21 @@ public class AnimationUtii {
 
     public static Animation createAnimation(Texture tx,int row ,int cols) {
         return createAnimation(tx, row, cols, Animation.PlayMode.LOOP, 0.2f);
+    }
+
+
+    public static TextureRegion tuerx(Texture tx,int row ,int cols,int ind) {
+        int perCellWidth = tx.getWidth()/cols;
+        int perCellheight = tx.getHeight()/row;
+        TextureRegion[][] cell = TextureRegion.split(tx, perCellWidth, perCellheight);
+        TextureRegion[] z = new TextureRegion[row*cols];
+        int index =0;
+        for(int i=0;i<row;i++) {
+            for(int j=0;j<cols;j++,index++) {
+                z[index] = cell[i][j];
+            }
+        }
+        return z[ind];
     }
 
     public static TextureRegion[] tuerx(Texture tx,int row ,int cols) {
