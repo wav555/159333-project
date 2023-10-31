@@ -10,7 +10,7 @@ public class CollisionUtils {
 
     public static Rectangle time = new Rectangle();
 
-    public synchronized static boolean isCollis(Actor a,Actor b,float timp) {
+    public synchronized static boolean isCollis(Actor a,Actor b,float buffer) {
         //determine if there are objects that are going to collide with each other
         if(a == null||b == null) {
             return false;
@@ -22,14 +22,14 @@ public class CollisionUtils {
         rectangle2.setSize(b.getWidth()*b.getScaleX(),b.getHeight()*b.getScaleY());
         rectangle2.setPosition(b.getX()-(b.getOriginX()*b.getScaleX()-b.getOriginX()), b.getY()-(b.getOriginY()*b.getScaleY()-b.getOriginY()));
 
-        float doubletimp = timp *2;
+        float doubletimp = buffer *2;
         //check collision
         if(rectangle1.getWidth()> doubletimp && rectangle1.getHeight() > doubletimp) {
-            time.set(rectangle1.x+timp, rectangle1.y+timp, rectangle1.width-doubletimp, rectangle1.height - doubletimp);
+            time.set(rectangle1.x+buffer, rectangle1.y+buffer, rectangle1.width-doubletimp, rectangle1.height - doubletimp);
 
             return time.overlaps(rectangle2);
         }else if(rectangle2.getWidth()>doubletimp && rectangle2.getHeight()>doubletimp) {
-            time.set(rectangle2.x+timp, rectangle2.y+timp, rectangle2.width-doubletimp, rectangle2.height-doubletimp);
+            time.set(rectangle2.x+buffer, rectangle2.y+buffer, rectangle2.width-doubletimp, rectangle2.height-doubletimp);
             return time.overlaps(rectangle1);
         }
         return rectangle1.overlaps(rectangle2);
