@@ -22,14 +22,14 @@ public class CollisionUtils {
         rectangle2.setSize(b.getWidth()*b.getScaleX(),b.getHeight()*b.getScaleY());
         rectangle2.setPosition(b.getX()-(b.getOriginX()*b.getScaleX()-b.getOriginX()), b.getY()-(b.getOriginY()*b.getScaleY()-b.getOriginY()));
 
-        float doubletimp = buffer *2;
+        float doubleBuffer = buffer *2;
         //check collision
-        if(rectangle1.getWidth()> doubletimp && rectangle1.getHeight() > doubletimp) {
-            time.set(rectangle1.x+buffer, rectangle1.y+buffer, rectangle1.width-doubletimp, rectangle1.height - doubletimp);
+        if(rectangle1.getWidth()> doubleBuffer && rectangle1.getHeight() > doubleBuffer) {
+            time.set(rectangle1.x+buffer, rectangle1.y+buffer, rectangle1.width-doubleBuffer, rectangle1.height - doubleBuffer);
 
             return time.overlaps(rectangle2);
-        }else if(rectangle2.getWidth()>doubletimp && rectangle2.getHeight()>doubletimp) {
-            time.set(rectangle2.x+buffer, rectangle2.y+buffer, rectangle2.width-doubletimp, rectangle2.height-doubletimp);
+        }else if(rectangle2.getWidth()>doubleBuffer && rectangle2.getHeight()>doubleBuffer) {
+            time.set(rectangle2.x+buffer, rectangle2.y+buffer, rectangle2.width-doubleBuffer, rectangle2.height-doubleBuffer);
             return time.overlaps(rectangle1);
         }
         return rectangle1.overlaps(rectangle2);
