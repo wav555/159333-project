@@ -34,12 +34,12 @@ public class AnimationUtii {
 
     }
 
-    public static Animation createAnimation(Texture tx,int row ,int cols,Animation.PlayMode a,float date,boolean r,boolean c) {
-        return createAnimation(tx, row, cols, a, date, r, c,0,0);
+    public static Animation createAnimation(Texture tx,int row ,int cols,Animation.PlayMode a,float gap,boolean b,boolean c) {
+        return createAnimation(tx, row, cols, a, gap, b, c,0,0);
     }
 
-    public static Animation createAnimation(Texture tx,int row ,int cols,Animation.PlayMode a,float date) {
-        return createAnimation(tx, row, cols, a, date, false, false);
+    public static Animation createAnimation(Texture tx,int row ,int cols,Animation.PlayMode a,float gap) {
+        return createAnimation(tx, row, cols, a, gap, false, false);
     }
 
     public static Animation createAnimation(Texture tx,int row ,int cols) {
